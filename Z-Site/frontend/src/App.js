@@ -1,12 +1,13 @@
 import React from 'react';
-import Coin from './Coin'
-import Navbar from './Navbar'
+import Content from './Components/Content'
+import Navbar from './Components/Navbar'
 
 function App(){
     return(
         <div>
             <Navbar />
-            <Coin />
+            <Content />
+         
         </div>
     )
 }
