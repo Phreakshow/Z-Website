@@ -4,9 +4,7 @@ import App from './App';
 import Coin from './Coin'
 ReactDOM.render(
     <React.StrictMode>
-        <div><App />
-        <Coin />
-        </div>
+        <App />
     </React.StrictMode>,
     document.getElementById('root')
 )
