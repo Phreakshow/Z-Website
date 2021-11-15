@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from "react";
-import { Grid } from '@mui/material';
 
+import { Grid } from '@mui/material';
+let timing = 100;
 function Coin2({props}){
     const [coins,setCoins] = useState([])
     const [counter,setCounter] = useState(0)
@@ -59,9 +60,13 @@ function Coin2({props}){
                         setCoins(filteredCoins)
                     }
                     
-                setCounter(counter + 1)
                 console.log(counter)
-        },60000)
+                if(counter >1){
+                    timing = 60000
+                }else {
+                }
+                setCounter(counter + 1)
+        },timing)
         return function cleanup(){
             clearInterval(timer)
         }
@@ -69,7 +74,6 @@ function Coin2({props}){
     
     return( <div>
         <h1>TOKEN FEED</h1>
-        <h1>{counter}</h1>
         {coins.map(coin =>  
             <Grid  container
                     direction="column"
