@@ -1,13 +1,13 @@
 import React from 'react'
-import Coin from './Coin'
 import Promofield from './Promofield'
+import Coin2 from './Coin2'
 
-
-function Sidebar() {
+function Sidebar({props}) {
+    let data = props
     return (
         <div>
             <Promofield/>
-            <Coin />
+            <Coin2 props={data}/>
         </div>
     )
 }

@@ -7,7 +7,8 @@ const coinSchema = mongoose.Schema({
     Date:String,
     Time:String,
     Poo:String,
-    Pink:String
+    Pink:String,
+    DataFormated:Object,
 })
 
 module.exports = mongoose.model('Zbot' , coinSchema , "Zbot");
