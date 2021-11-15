@@ -11,7 +11,7 @@ function Content() {
         <Box sx={{ display: 'flex', width: "25%", flexWrap: 'wrap' }}>
             <Sidebar/>
         </Box>
-        <Box sx={{ display: 'flex', width: "75%", flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', justifyContent: "space-around", width: "75%", flexWrap: 'wrap' }}>
         <Calendar/>
         </Box>
         </Box>
