@@ -9,6 +9,7 @@ const coinSchema = mongoose.Schema({
     Poo:String,
     Pink:String,
     DataFormated:Object,
+    PromoLink:String,
 })
 
 module.exports = mongoose.model('Zbot' , coinSchema , "Zbot");

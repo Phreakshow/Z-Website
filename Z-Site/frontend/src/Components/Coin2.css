@@ -1,0 +1,9 @@
+.coins-wrapper {
+    border:1px solid black;
+    background-color:  #202124;
+    color:#8ab4f8;
+}
+.coins-wrapper a {
+    color:#e63946;
+    text-decoration: none;
+}

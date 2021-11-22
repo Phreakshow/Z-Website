@@ -21,6 +21,6 @@ app.get('/',(req,res) => {
 })
 
 
-app.listen(port, () => console.log(`on prot ${port}`));
+app.listen(port, () => console.log(`on port ${port}`));
 
 //TO START /node server.js
