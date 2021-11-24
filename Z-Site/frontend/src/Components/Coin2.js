@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
-
 import { Grid } from '@mui/material';
+import './Coin2.css'
 let timing = 100;
 function Coin2({props}){
     const [coins,setCoins] = useState([])
@@ -15,6 +15,9 @@ function Coin2({props}){
                 let day = date.getDate();
                 let hour = date.getHours();
                 let minutes = date.getMinutes();
+                if(minutes < 10){
+                    minutes = '0' + minutes
+                }
                 let currentTime = hour + '.' + minutes 
                 let today = month +'.' + day
                 currentTime = Number(currentTime)
@@ -42,6 +45,16 @@ function Coin2({props}){
                    for(let i =0;i<coinsLenght;i++){
                         if(coinS[i].Date == today){
                             if(coinS[i].Time > currentTime){
+                                if(coinS[i].DateFormated.length > 20){
+                                   //2021-11-22T22:14:00.000Z
+                                   let indexT = coinS[i].DateFormated.indexOf('T')
+                                   let indexD = coinS[i].DateFormated.indexOf('.')
+                                   console.log("index of T",indexT)
+                                   console.log("index of ." , indexD)
+                                   let newDate = coinS[i].DateFormated.slice(indexT+1,indexD-3)
+                                   console.log(newDate)
+                                   coinS[i].DateFormated = newDate
+                                }
                                 filteredCoins.push(coinS[i])
                             }
                         }
@@ -50,6 +63,7 @@ function Coin2({props}){
                     filteredCoins.sort((a,b) => {
                         return a.Time - b.Time
                     })
+                    console.log(filteredCoins,currentTime)
                     //показваме само следващите 5 токена или останалите ако са под 5 ----------
                     if(filteredCoins.length >=5){
                         for(let i=0;i<5;i++){
@@ -72,16 +86,15 @@ function Coin2({props}){
         }
     },[counter])
     
-    return( <div>
+    return( <div className="coins-wrapper">
         <h1>TOKEN FEED</h1>
         {coins.map(coin =>  
             <Grid  container
                     direction="column"
                     justifyContent="center"
                     alignItems="center">
-            <Grid item xs> {coin.name} </Grid>
-            <Grid item xs> {coin.TG} </Grid>
-            <Grid item xs> {coin.Time}</Grid>
+            <Grid item xs><a href={coin.TG} target="_blank"> {coin.name} </a></Grid>
+            <Grid item xs>{coin.Type} {coin.DateFormated}</Grid>
             -------------- 
             </Grid>
             )}

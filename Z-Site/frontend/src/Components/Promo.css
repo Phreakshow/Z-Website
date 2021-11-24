@@ -1,0 +1,9 @@
+.player-button {
+    border:0;
+    background-color: black;
+    max-height: 250px;
+    max-width: 100%;
+}
+.player-button :hover{
+    cursor: pointer;
+}

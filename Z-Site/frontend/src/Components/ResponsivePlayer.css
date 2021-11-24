@@ -1,0 +1,9 @@
+.react-player video{
+    max-height: 250px;
+    min-height: 249px;
+    max-width: 100%;
+    min-width: 99%;
+}
+.react-player {
+    transition: 2s ease-in-out;
+}
