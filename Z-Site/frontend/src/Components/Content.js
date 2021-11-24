@@ -19,7 +19,7 @@ function Content() {
             <Sidebar props={data}/>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: "space-around", width: "75%", flexWrap: 'wrap' }}>
-        <Calendar/>
+        <Calendar props ={data}/>
         </Box>
         </Box>
         </div>
