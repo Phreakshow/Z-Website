@@ -20,7 +20,7 @@ export default function Calendar(props){
 
   for(let i = 0; i < props.props.length; i++){
     let obj = {};
-    obj["title"] = props.props[i].Type.trim() + " " +  props.props[i].name 
+    obj["title"] = props.props[i].Type.trim() + ` \n` +  props.props[i].name 
     var str = props.props[i].DateFormated
     str = str.slice(0, 19) + str.slice(23);
     obj["start"] = str
@@ -29,6 +29,7 @@ export default function Calendar(props){
     obj["tg"] = props.props[i].TG
     let typeStr = props.props[i].Type.split(" ").join("")
     obj["type"] = typeStr
+    
     // LA, WL, PP, PV, VC , NF, FL, 
     let category = ""
     if(typeStr === "FL"){
@@ -40,7 +41,8 @@ export default function Calendar(props){
                 category = `voice-chat`}else if(typeStr === "NF"){
                   category = `nft`}
     obj["display"] = `block`
-    obj["classNames"] =[category]
+    obj["classNames"] = [category]
+    
     
     projectList.push(obj)
   
@@ -64,10 +66,13 @@ export default function Calendar(props){
         headerToolbar={{
           left: "prev,next today",
           center: "title",
-          right: "dayGridMonth,timeGridWeek,listWeek",
+          right: "dayGridMonth,listWeek",
         }}
         expandRows="true"
-        
+        allDaySlot="false"	
+        nowIndicator="true"
+        //eventMaxStack="2"
+        eventLimitText= "More"
         eventTimeFormat= {{
   hour: 'numeric',
   minute: '2-digit',
@@ -112,7 +117,7 @@ export const StyleWrapper = styled.div`
     vertical-align: top;
     
     padding: 0 1px;
-    white-space: normal;
+    
 }
 
 .fc-direction-ltr .fc-daygrid-event .fc-event-time {
@@ -142,11 +147,11 @@ export const StyleWrapper = styled.div`
     padding: 1px;
     padding-bottom: 9px;
     margin: 4px;
-  
+    flex-wrap: nowrap;
     
-background: rgba(14, 165, 233, 0.1);;
+background: #D3EFFC;
 border-radius: 4px;
-border-color: rgba(255, 255, 255, 0.9);
+border-color: #D3EFFC;
 border-left: 2px solid #0EA5E9;
 
 
@@ -162,6 +167,7 @@ line-height: 16px;}
 
 .white-list .fc-event-title {
   color:  #0369A1;
+  
 }
 
 .fair-launch{ display: flex;
@@ -199,7 +205,7 @@ line-height: 16px;}
     padding-bottom: 9px;
     margin: 4px;
     
-    color:  #a10303;
+    color:  #006C0B;
 background: #75FF83;
 border-radius: 4px;
 border-color: #75FF83;
@@ -226,7 +232,7 @@ line-height: 16px;}
     padding-bottom: 9px;
     margin: 4px;
     
-    color:  #a10303;
+    color:  #757700;
 background: #FAFC9E;
 border-radius: 4px;
 border-color: #FAFC9E;
@@ -365,6 +371,97 @@ margin: 0px 0px;
     box-shadow: none;
   }
 
+  .fc .fc-button:focus {
+    outline: 0;
+    box-shadow: none
+  }
+
+
+.fc .fc-timegrid-now-indicator-arrow {
+    position: absolute;
+    z-index: 4;
+    margin-top: -5px;
+    border-style: solid;
+    border-color: #1976d2;
+    border-color: var(--fc-now-indicator-color, #1976d2);
+}
+
+.fc-direction-ltr .fc-timegrid-now-indicator-arrow {
+    left: 0;
+    border-width: 5px 0 5px 6px;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.fc .fc-timegrid-now-indicator-line {
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    right: 0;
+    border-style: solid;
+    border-color: #1976d2;
+    border-color: var(--fc-now-indicator-color, #1976d2);
+    border-width: 3px 0 0;
+}
+
+.fc .fc-timegrid-slot { /* a <td> */
+  
+    height: 3em;
+    border-bottom: 0 /* each cell owns its top border */
+  }
+
+
+
+
+
+.fc .fc-list-event:hover td {
+    background-color: rgba(208, 208, 208, 0.01);
+    ;
+  }
+
+
+  .fc .fc-list-event-dot {
+    display: none;
+    box-sizing: content-box;
+    width: 0;
+    height: 0;
+    border: 5px solid none;
+    border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, none);
+    border-radius: 0px;
+    border-radius: calc(var(--fc-list-event-dot-width, 10px) / 2);
+  }
+
+  .fc .fc-list-event-graphic,
+  .fc .fc-list-event-time {
+    
+    width: 1.5rem;
+    underline: none;
+    border: 0px solid red;
+  }
+
+  .fc .fc-list-event-title  {
+    color: inherit;
+    border: 0px solid red;
+  }
+
+  .fc .fc-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.75rem
+  }
   
 
+  .fc-timegrid-event-harness > .fc-timegrid-event {
+    position: absolute; /* absolute WITHIN the harness */
+   
+    flex-wrap: wrap;
+  flex-direction: row;
+    top: 0; /* for when not yet positioned */
+    bottom: 0; /* " */
+    left: 0;
+    right: 0;
+  }
 `
+
+ 
