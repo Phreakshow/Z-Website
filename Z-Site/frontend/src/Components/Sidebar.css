@@ -2,6 +2,12 @@
     position: fixed;
     top:8vh;
     width: 24.8vw;
-    height: 100vh;
-    background-color: black;
+    height: inherit;
+    background-color: #18181B;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  
 }
+.sidebar-wrapper::-webkit-scrollbar {
+    display: none;
+  }
