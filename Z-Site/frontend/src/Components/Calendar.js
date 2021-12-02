@@ -6,9 +6,22 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import styled from "@emotion/styled";
 import "./Style.css";
+import Popover from '@mui/material/Popover'
+import Button from '@mui/material/Button'
+import ModalPopup from "./ModalPopup.js";
 
 
 export default function Calendar(props){
+  const [modalIsOpen,setModalIsOpen] = useState(false);
+  const [modalProps,setModalProps] = useState("")
+
+  const setModalIsOpenToTrue =()=>{
+    setModalIsOpen(true)
+}
+
+const setModalIsOpenToFalse =()=>{
+    setModalIsOpen(false)
+}
 
 
   let projectList = []
@@ -20,7 +33,7 @@ export default function Calendar(props){
 
   for(let i = 0; i < props.props.length; i++){
     let obj = {};
-    obj["title"] = props.props[i].Type.trim() + ` \n` +  props.props[i].name 
+    obj["title"] = props.props[i].Type.trim() +" " +  props.props[i].name 
     var str = props.props[i].DateFormated
     str = str.slice(0, 19) + str.slice(23);
     obj["start"] = str
@@ -42,24 +55,27 @@ export default function Calendar(props){
                   category = `nft`}
     obj["display"] = `block`
     obj["classNames"] = [category]
+    obj["id"] = i;
+    obj["dateForModal"] = props.props[i].DateFormated
     
     
     projectList.push(obj)
   
   }
-  console.log(props.props)
+  
   console.log(projectList)
-
-
 
 
 
   
 
+ 
+
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
     <StyleWrapper>
+    <ModalPopup modalProps={modalProps} modalIsOpen={modalIsOpen} setModalIsOpenToTrue={setModalIsOpenToTrue} setModalIsOpenToFalse={setModalIsOpenToFalse}/>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -69,9 +85,7 @@ export default function Calendar(props){
           right: "dayGridMonth,listWeek",
         }}
         expandRows="true"
-        allDaySlot="false"	
-        nowIndicator="true"
-        //eventMaxStack="2"
+        allDaySlot="false"
         eventLimitText= "More"
         eventTimeFormat= {{
   hour: 'numeric',
@@ -81,8 +95,14 @@ export default function Calendar(props){
         events={function (start, callback) {
         callback(projectList);
     }}
-        
+    eventClick = {(info)=>{ 
+      setModalIsOpenToTrue(true)
+      setModalProps(info.event._def)
+      console.log(modalProps)
+    }}
+
       />
+      
       </StyleWrapper>
     </div>
   );
@@ -159,7 +179,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .white-list .fc-event-time {
   color:  #0369A1;
@@ -180,7 +201,7 @@ line-height: 16px;}
     color:  #a10303;
 background: #FEEDF5;
 border-radius: 4px;
-border-color: rgba(255, 255, 255, 0.9);
+border-color: #FEEDF5;
 border-left: 2px solid #EC4899;
 
 
@@ -188,7 +209,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .fair-launch .fc-event-time {
   color:  #EC4899;
@@ -216,7 +238,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .launch .fc-event-time {
   color:  #006C0B;
@@ -243,7 +266,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .public-presale .fc-event-time {
   color:  #757700;
@@ -270,7 +294,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .private-sale .fc-event-time {
   color:  #774F00;
@@ -287,9 +312,9 @@ line-height: 16px;}
     margin: 4px;
     
     color:  #a10303;
-background: #808CFA;
+background: 	#828df8;
 border-radius: 4px;
-border-color: #808CFA;
+border-color: 	#828df8;
 border-left: 2px solid #0027F2;
 
 
@@ -297,7 +322,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .voice-chat .fc-event-time {
   color:  #00116C;
@@ -324,7 +350,8 @@ font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
-line-height: 16px;}
+line-height: 16px;
+cursor: pointer;}
 
 .nft .fc-event-time {
   color:  #D40000;
@@ -360,11 +387,23 @@ margin: 0px 0px;
 .fc .fc-button-primary:not(:disabled):active, .fc .fc-button-primary:not(:disabled).fc-button-active {
     color: #fff;
     color: var(--fc-button-text-color, #fff);
-    background-color: #1976d2;
-    background-color: var(--fc-button-active-bg-color, #1976d2);
+    background-color: #DC2626;
+    border-radius: 7.46667px;
+   border-color: rgba(255, 255, 255, 0.01)
     
 }
 
+.fc-direction-ltr .fc-button-group > .fc-button {
+  font-family: 'Inter', sans-serif;
+    margin-left: 0.15rem;
+    border-radius: 7.46667px;
+    color: #71717A;
+    background: rgba(255, 255, 255, 0.01);
+    border-color: rgba(255, 255, 255, 0.01)
+}
+.css-1ta79b3 .fc-direction-ltr .fc-toolbar>*>:not(:first-child) {
+    margin-left: 9.75px;
+}
 
 .fc .fc-button-primary:not(:disabled):active:focus,
   .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
@@ -462,6 +501,14 @@ margin: 0px 0px;
     left: 0;
     right: 0;
   }
+
+  .fc .fc-toolbar-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.75em;
+    margin: 0;
+}
+
+
 `
 
  

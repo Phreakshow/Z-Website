@@ -7,6 +7,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Button } from '@mui/material';
+import logo from "../Z-Logo.png"
+
 
 const useStyles = makeStyles((theme) => ({
     navlinks: {
@@ -15,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
    logo: {
       flexGrow: "1",
-      cursor: "pointer",
+      background: "linear-gradient(270deg, #EC4899 0%, #FFC6CF 94.76%)",
+      justifyContent:"space-between",
     },
     link: {
       textDecoration: "none",
@@ -25,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
       "&:hover": {
         color: "yellow",
         borderBottom: "1px solid white",
+        
       },
     },
   }));
@@ -35,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
     return (
       <AppBar position="static">
         <CssBaseline />
-        <Toolbar>
-          <Typography variant="h4" className={classes.logo}>
-            Z-Launch Tracker
+        <Toolbar className={classes.logo}>
+          <Typography variant="h4" >
+          <img src={logo} cursor="help" height={60} />
           </Typography>
           <Button variant="contained">Connect</Button>
         </Toolbar>

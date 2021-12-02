@@ -15,7 +15,7 @@ function Content() {
     return (
         <div>
         <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <Box sx={{ display: 'flex', width: "25%" ,height:"100%",  flexWrap: 'nowrap', backgroundColor: "#202124",  }}>
+        <Box sx={{ display: 'flex', width: "25%" ,height:"100%",  flexWrap: 'nowrap', backgroundColor: "#202124" }}>
             <Sidebar props={data}/>
         </Box>
         <Box sx={{ display: 'flex',  width: "75%", flexWrap: 'wrap' }}>
