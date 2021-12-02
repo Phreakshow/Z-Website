@@ -7,7 +7,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Button } from '@mui/material';
-
+import './Navbar.css'
 const useStyles = makeStyles((theme) => ({
     navlinks: {
       marginLeft: theme.spacing(10),
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
   
     return (
-      <AppBar position="static">
+      <AppBar className="navbar">
         <CssBaseline />
         <Toolbar>
           <Typography variant="h4" className={classes.logo}>

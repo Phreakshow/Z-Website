@@ -6,6 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import styled from "@emotion/styled";
 import "./Style.css";
+import { color } from "@mui/system";
 
 
 export default function Calendar(props){
@@ -58,7 +59,7 @@ export default function Calendar(props){
 
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div style={{ width: "100%", height: "100%" , margin:"10vh 0 0 0" }}>
     <StyleWrapper>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
