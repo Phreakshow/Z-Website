@@ -9,6 +9,7 @@ import "./Style.css";
 import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import ModalPopup from "./ModalPopup.js";
+import { color } from "@mui/system";
 
 
 export default function Calendar(props){
@@ -73,7 +74,7 @@ const setModalIsOpenToFalse =()=>{
 
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div style={{ width: "100%", height: "100%" , margin:"10vh 0 0 0" }}>
     <StyleWrapper>
     <ModalPopup modalProps={modalProps} modalIsOpen={modalIsOpen} setModalIsOpenToTrue={setModalIsOpenToTrue} setModalIsOpenToFalse={setModalIsOpenToFalse}/>
       <FullCalendar

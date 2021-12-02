@@ -1,0 +1,7 @@
+.sidebar-wrapper {
+    position: fixed;
+    top:8vh;
+    width: 24.8vw;
+    height: 100vh;
+    background-color: black;
+}

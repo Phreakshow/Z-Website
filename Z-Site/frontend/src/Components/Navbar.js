@@ -8,8 +8,7 @@ import {
 } from "@material-ui/core";
 import { Button } from '@mui/material';
 import logo from "../Z-Logo.png"
-
-
+import './Navbar.css'
 const useStyles = makeStyles((theme) => ({
     navlinks: {
       marginLeft: theme.spacing(10),
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
   
     return (
-      <AppBar position="static">
+      <AppBar className="navbar">
         <CssBaseline />
         <Toolbar className={classes.logo}>
           <Typography variant="h4" >
