@@ -6,6 +6,7 @@
     height: auto;
     margin:0;
     margin-bottom: 9vh;
+    margin-top:30vh;
     padding:0;
 }
 .token-p {
@@ -82,6 +83,10 @@
     text-decoration: none;
 
 }
+.chart-grid-pp {
+    color: green;
+}
+
 .dotNF {
     height: 12px;
     width: 12px;

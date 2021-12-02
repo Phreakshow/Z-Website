@@ -1,8 +1,13 @@
 .player-button {
+    position: fixed;
+    top:8vh;
+    left:0;
     border:0;
     background-color: #18181B;;
     max-height: 30vh;
-    max-width: 100%;
+    min-height: 30vh;
+    max-width: 24.8vw;
+    min-width: 24.8vw;
 }
 .player-button :hover{
     cursor: pointer;

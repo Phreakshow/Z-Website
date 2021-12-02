@@ -100,7 +100,6 @@ function Coin2({props}){
                 //тук има 100% по-добре имплентация , но за сега това работи--
                 let coinsLenght = coinS.length
                 let filteredCoins = [];
-                let onlyFiveCoins = [];
                 let tmrCoins = [];
 
                     for(let i =0;i<coinsLenght;i++){
@@ -130,6 +129,9 @@ function Coin2({props}){
                                 if(coinS[i].Poo != null){
                                     coinS[i].Poo2 = coinS[i].Poo.slice(0,32)
                                 }
+                                if(coinS[i].Pink != null){
+                                    coinS[i].Pink2 = coinS[i].Pink.slice(0,30)
+                                }
                                
                                 filteredCoins.push(coinS[i])
                             }
@@ -149,7 +151,8 @@ function Coin2({props}){
                             }
                             tmrCoins.push(coinS[i])
                         }
-                    } 
+                    }
+                    console.log(filteredCoins) 
                     //сортираме в възходящ ред ------------------------------------------------
                     filteredCoins.sort((a,b) => {
                         return a.Time - b.Time
@@ -165,20 +168,21 @@ function Coin2({props}){
                         setTomorrowCoins(tmrCoins)
                         setCoins(filteredCoins)
                     }
-                console.log(filteredCoins)
-                console.log(tmrCoins)
+    
                 console.log(counter)
                 if(counter >2){
                     timing = 60000
-                }else {
                 }
+
                 setCounter(counter + 1)
         },timing)
+
         return function cleanup(){
             clearInterval(timer)
         }
+
     },[counter])
-    console.log("coins",coins.length)
+
     if(coins.length>=20){
         return( <div className="coins-wrapper">
         <p className="token-p">Upcoming events</p>
@@ -197,9 +201,10 @@ function Coin2({props}){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className="chart-grid"><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Type.includes("PP") ? "chart-grid-PP" : "chart-grid"}><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
             </Grid>
-            </div>
+            {/* chart-grid */}
+            </div> 
             )}
     </div>
     )
