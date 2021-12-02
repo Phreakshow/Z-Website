@@ -86,6 +86,10 @@ function Coin2({props}){
                     }
                     tomorrowD = month + '/' + helperDay + "/" + year;
                 }
+
+                let tomorrowCheck = helperMonth + "."+helperDay
+                tomorrowCheck = Number(tomorrowCheck)
+
                 setTomorrowDisplay(tomorrowD)
                 let today = month +'.' + day
                 currentTime = Number(currentTime)
@@ -131,7 +135,7 @@ function Coin2({props}){
                             }
                         }
                         
-                        if(coinS[i].Date == today + 0.01){
+                        if(coinS[i].Date == tomorrowCheck){
                             if(coinS[i].DateFormated.length > 20){
                                 //2021-11-22T22:14:00.000Z
                                 let indexT = coinS[i].DateFormated.indexOf('T')
@@ -154,18 +158,15 @@ function Coin2({props}){
                         return a.Time - b.Time
                     })
                     //показваме само следващите 5 токена или останалите ако са под 5 ----------
-                    if(filteredCoins.length >=5){
-                        for(let i=0;i<5;i++){
-                            onlyFiveCoins.push(filteredCoins[i])
-                        }
-                        setCoins(onlyFiveCoins)
-                    }else if(filteredCoins.length<5){
-                        let index = 5 - filteredCoins.length
+                    setCoins(filteredCoins)
+                    if(filteredCoins.length<20){
+                        let index = 20 - filteredCoins.length
                         tmrCoins = tmrCoins.slice(0,index)
                         setTomorrowCoins(tmrCoins)
                         setCoins(filteredCoins)
                     }
-                    
+                console.log(filteredCoins)
+                console.log(tmrCoins)
                 console.log(counter)
                 if(counter >2){
                     timing = 60000
@@ -177,8 +178,8 @@ function Coin2({props}){
             clearInterval(timer)
         }
     },[counter])
-    console.log(coins.length)
-    if(coins.length>=5){
+    console.log("coins",coins.length)
+    if(coins.length>=20){
         return( <div className="coins-wrapper">
         <p className="token-p">Upcoming events</p>
         <p className="date-p">TODAY {todayDisplay}</p>
@@ -188,13 +189,13 @@ function Coin2({props}){
                     direction="column"
                     justifyContent="center"
                     alignItems="center">
-            <Grid item xs className="time-grid"><p className="coin-time"><span className={coin.Type === "WL" ? "dotWL" : 
-                                                                                          coin.Type ==="PP" ? "dotPP" :
-                                                                                          coin.Type == "PV" ? "dotPV" :
-                                                                                          coin.Type == "LA" ? "dotLA" :
-                                                                                          coin.Type == "FL" ? "dotFL" :
-                                                                                          coin.Type == "VC" ? "dotVC": 
-                                                                                          coin.Type == "NF" ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
+            <Grid item xs className="time-grid"><p className="coin-time"><span className={coin.Type.includes("WL") ? "dotWL" : 
+                                                                                          coin.Type.includes("PP") ? "dotPP" :
+                                                                                          coin.Type.includes("PV") ? "dotPV" :
+                                                                                          coin.Type.includes("LA") ? "dotLA" :
+                                                                                          coin.Type.includes("FL") ? "dotFL" :
+                                                                                          coin.Type.includes("VC") ? "dotVC": 
+                                                                                          coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
             <Grid item xs className="chart-grid"><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
             </Grid>
@@ -202,7 +203,7 @@ function Coin2({props}){
             )}
     </div>
     )
-    }else if(coins.length <5){
+    }else if(coins.length <20){
         return( <div className="coins-wrapper">
             {console.log("a",coins,tomorrowCoins)}
         <p className="token-p">Upcoming events</p>
@@ -213,19 +214,19 @@ function Coin2({props}){
                     direction="column"
                     justifyContent="center"
                     alignItems="center">
-            <Grid item xs className="time-grid"><p className="coin-time"><span className={coin.Type === "WL" ? "dotWL" : 
-                                                                                          coin.Type ==="PP" ? "dotPP" :
-                                                                                          coin.Type == "PV" ? "dotPV" :
-                                                                                          coin.Type == "LA" ? "dotLA" :
-                                                                                          coin.Type == "FL" ? "dotFL" :
-                                                                                          coin.Type == "VC" ? "dotVC": 
-                                                                                          coin.Type == "NF" ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
+            <Grid item xs className="time-grid"><p className="coin-time"><span className={coin.Type.includes("WL") ? "dotWL" : 
+                                                                                          coin.Type.includes("PP") ? "dotPP" :
+                                                                                          coin.Type.includes("PV") ? "dotPV" :
+                                                                                          coin.Type.includes("LA") ? "dotLA" :
+                                                                                          coin.Type.includes("FL") ? "dotFL" :
+                                                                                          coin.Type.includes("VC") ? "dotVC": 
+                                                                                          coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
             <Grid item xs className="chart-grid"><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
             </Grid>
             </div>
             )}
-        <p className="date-p">{tomorrowDisplay}</p>
+        <p className="date-p">TOMORROW {tomorrowDisplay}</p>
         {tomorrowCoins.map(coin =>  
         <div className="coin-div">
             <Grid  container
