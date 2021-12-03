@@ -10,12 +10,24 @@ import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import ModalPopup from "./ModalPopup.js";
 import { color } from "@mui/system";
+import axios from 'axios'
 
-
-export default function Calendar(props){
-    // const [events, setEvents] = useState([]);
+export default function Calendar(){
+     const [events, setEvents] = useState([]);
   const [modalIsOpen,setModalIsOpen] = useState(false);
   const [modalProps,setModalProps] = useState("")
+
+
+    
+  useEffect(async()=>{
+      let apiCall = async () =>{
+          const res = await axios.get("http://localhost:3001/Zbot");
+          setEvents(res.data)
+      }
+      apiCall();
+       
+  },[])
+
 
   const setModalIsOpenToTrue =()=>{
     setModalIsOpen(true)
@@ -26,18 +38,8 @@ const setModalIsOpenToFalse =()=>{
 }
 
 
-// useEffect(() => {
-//   if (props.prps !==  []) {
-//     setEvents(props.props)
-//     console.log(events)
-
- 
-//   }
-// }, [props.props])
 
 
-let events = props.props
-console.log(props.props)
 console.log(events)
 
   let projectList = []

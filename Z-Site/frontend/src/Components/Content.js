@@ -6,14 +6,21 @@ import Sidebar from './Sidebar'
 import axios from 'axios'
 function Content() {
     const [data,setData] = useState([])
+    
     useEffect(async()=>{
-        const res = await axios.get("http://localhost:3001/Zbot");
-        setData(res.data)
+        let apiCall = async () =>{
+            const res = await axios.get("http://localhost:3001/Zbot");
+            setData(res.data)
+        }
+        apiCall();
          
     },[])
+
+   
    console.log(data)
 
-  
+   let calendarData = []
+   calendarData = data
 
     return (
         <div>
@@ -22,7 +29,7 @@ function Content() {
             <Sidebar props={data}/>
         </Box>
         <Box sx={{ display: 'flex',  width: "75%", flexWrap: 'wrap' }}>
-        <Calendar props ={data}/>
+        <Calendar />
         </Box>
         </Box>
         </div>
