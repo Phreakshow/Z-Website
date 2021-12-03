@@ -13,6 +13,7 @@ import { color } from "@mui/system";
 
 
 export default function Calendar(props){
+    // const [events, setEvents] = useState([]);
   const [modalIsOpen,setModalIsOpen] = useState(false);
   const [modalProps,setModalProps] = useState("")
 
@@ -25,23 +26,37 @@ const setModalIsOpenToFalse =()=>{
 }
 
 
+// useEffect(() => {
+//   if (props.prps !==  []) {
+//     setEvents(props.props)
+//     console.log(events)
+
+ 
+//   }
+// }, [props.props])
+
+
+let events = props.props
+console.log(props.props)
+console.log(events)
+
   let projectList = []
 
 //___________________________
 
   //________________________________________
-  
+ 
 
-  for(let i = 0; i < props.props.length; i++){
+  for(let i = 0; i < events.length; i++){
     let obj = {};
-    obj["title"] = props.props[i].Type.trim() +" " +  props.props[i].name 
-    var str = props.props[i].DateFormated
+    obj["title"] = events[i].Type.trim() +" " +  events[i].name 
+    var str = events[i].DateFormated
     str = str.slice(0, 19) + str.slice(23);
     obj["start"] = str
-    obj["pink"] = props.props[i].Pink
-    obj["poo"] = props.props[i].Poo
-    obj["tg"] = props.props[i].TG
-    let typeStr = props.props[i].Type.split(" ").join("")
+    obj["pink"] = events[i].Pink
+    obj["poo"] = events[i].Poo
+    obj["tg"] = events[i].TG
+    let typeStr = events[i].Type.split(" ").join("")
     obj["type"] = typeStr
     
     // LA, WL, PP, PV, VC , NF, FL, 
@@ -57,7 +72,7 @@ const setModalIsOpenToFalse =()=>{
     obj["display"] = `block`
     obj["classNames"] = [category]
     obj["id"] = i;
-    obj["dateForModal"] = props.props[i].DateFormated
+    obj["dateForModal"] = events[i].DateFormated
     
     
     projectList.push(obj)
@@ -87,19 +102,19 @@ const setModalIsOpenToFalse =()=>{
         }}
         expandRows="true"
         allDaySlot="false"
-        eventLimitText= "More"
         eventTimeFormat= {{
   hour: 'numeric',
   minute: '2-digit',
   meridiem: 'short'
 }}
         events={function (start, callback) {
-        callback(projectList);
-    }}
+        callback(projectList)}}
     eventClick = {(info)=>{ 
       setModalIsOpenToTrue(true)
       setModalProps(info.event._def)
       console.log(modalProps)
+      
+      
     }}
 
       />

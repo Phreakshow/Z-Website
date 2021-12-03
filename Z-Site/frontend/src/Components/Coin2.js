@@ -4,14 +4,17 @@ import './Coin2.css'
 
 let timing = 100;
 
-function Coin2({props}){
+function Coin2(data){
     const [coins,setCoins] = useState([])
     const [tomorrowCoins,setTomorrowCoins] = useState([])
     const [tomorrowHelper,setTomorrowHelper] = useState([])
     const [todayDisplay,setTodayDisplay] = useState(",")
     const [tomorrowDisplay,setTomorrowDisplay] = useState(",")
     const [counter,setCounter] = useState(0)
-    let coinS = props;
+    
+    let coinS = [];
+    coinS = data.data.map((x)=>x)
+    console.log(coinS)
     useEffect(() => {
         let timer = setInterval(()=>{
 
