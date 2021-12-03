@@ -13,8 +13,7 @@ function Content() {
     },[])
    console.log(data)
 
-   let calendarData = []
-   calendarData = data
+  
 
     return (
         <div>
@@ -23,7 +22,7 @@ function Content() {
             <Sidebar props={data}/>
         </Box>
         <Box sx={{ display: 'flex',  width: "75%", flexWrap: 'wrap' }}>
-        <Calendar props ={calendarData}/>
+        <Calendar props ={data}/>
         </Box>
         </Box>
         </div>
