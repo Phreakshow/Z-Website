@@ -5,8 +5,8 @@
     flex-direction: column;
     height: auto;
     margin:0;
-    margin-bottom: 9vh;
-    margin-top:30vh;
+    margin-bottom: 1vh;
+    margin-top:38vh;
     padding:0;
 }
 .token-p {
@@ -71,20 +71,33 @@
     color:#FFFFFF;
     text-decoration: none;
 }
-.chart-grid {
+.chart-grid-poo {
     padding-left:18px;
     margin-left:16px;
     align-self: flex-start;
 }
 
-.chart-grid a{
+
+.chart-grid-poo a{
     font-family: 'Inter',sans-serif;
     color:#A1A1AA;
     text-decoration: none;
 
 }
+.chart-grid-dex {
+    padding-left:18px;
+    margin-left:16px;
+    align-self: flex-start;
+
+}
 .chart-grid-pp {
     color: green;
+}
+.chart-grid-TBA {
+    display: none;
+}
+.chart-grid-hidden {
+    display:none;
 }
 
 .dotNF {
@@ -162,4 +175,20 @@
 }
 .type-span {
     font-size: 16px;
+}
+.pink-grid {
+    padding-left:18px;
+    margin-left:16px;
+    align-self: flex-start;
+}
+.pink-grid a {
+    font-family: 'Inter',sans-serif;
+    text-decoration: none;
+    color:pink;
+}
+.pink-grid-hidden {
+    display: none;
+}
+.pink-grid-TBA {
+    display:none;
 }
