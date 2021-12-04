@@ -14,21 +14,15 @@ function Coin2(data){
     
     let coinS = [];
     coinS = data.data.map((x)=>x)
-    console.log(coinS)
+
     useEffect(() => {
         let timer = setInterval(()=>{
 
 
                 //вземаме сегашното време UTC в дата и час - в числа -----
                 //тук е голям мармалад има по-добра имплентация ,но за сега това върши работа ;_;
-                let date = new Date()
-                // let year = date.getUTCFullYear()
-                // let month = date.getUTCMonth() + 1;
-                // let daysInMonth = new Date(year,month,0).getDate();
-                // let day = date.getUTCDate();
-                // let hour = date.getUTCHours();
-                // let minutes = date.getUTCMinutes();
 
+                let date = new Date()
                 let year = date.getFullYear()
                 let month = date.getMonth() + 1;
                 let daysInMonth = new Date(year,month,0).getDate();
@@ -121,13 +115,14 @@ function Coin2(data){
                                     helperDate = 1.01
                                 }
                             }
-                            coinS[i].Date = helperDate 
+                            
+                            coinS[i].Date = helperDate.toFixed(2)
                             let h = coinS[i].Time2 - 24
                             coinS[i].Time = h
                             coinS[i].flagged = true
                         }
                     }
-                    console.log(coinS)
+                    
                    //всички токени който са с днешна дата и са в следващите часове------------
 
                    for(let i =0;i<coinsLenght;i++){
@@ -187,12 +182,12 @@ function Coin2(data){
 
                                 //PM -------------------------------------------
                                 if(coinS[i].flagged === true){
-                                    console.log("flagged",coinS[i])
-                                    console.log(coinS[i].Time2)
+                                    
+                                    
                                     let helper = coinS[i].Time
                                     helper = helper.toFixed(2)
                                     let time2 = -coinS[i].Time
-                                    console.log(time2)
+                                    
                                     coinS[i].Time = time2
                                     tmrHelper.push(coinS[i])
                                     if(helper == 0){
@@ -203,11 +198,11 @@ function Coin2(data){
                                         helper = helper.replace('.',':')
                                         coinS[i].DateFormated = helper
                                     }
-                                    console.log("helping",helper)
+                                    
                                 }
                                 else if(coinS[i].Time2 >12){
                                     let helpr = coinS[i].Time2 - 12.0
-                                    console.log(coinS[i],helpr)
+                                    
                                     if(helpr < 10){
                                         helpr = "0" + helpr.toFixed(2)
                                         helpr = helpr.replace('.',':')
@@ -218,7 +213,6 @@ function Coin2(data){
                                         helpr = helpr.replace('.',':')
                                         helpr = helpr + ' ' + "PM"
                                         coinS[i].DateFormated = helpr
-                                        console.log(coinS[i])
                                     }
                                 }
                                 
@@ -246,19 +240,22 @@ function Coin2(data){
                              if(coinS[i].Poo != null){
                                 coinS[i].Poo2 = coinS[i].Poo.slice(0,32)
                             }
+                            if(coinS[i].Pink != null){
+                                coinS[i].Pink2 = coinS[i].Pink.slice(0,30)
+                            }
                             tmrCoins.push(coinS[i])
                         }
                     }
-                    //console.log(filteredCoins) 
+                    
                     //сортираме в възходящ ред ------------------------------------------------
                     filteredCoins.sort((a,b) => {
                         return a.Time - b.Time
                     })
-                    console.log("tmr",tmrHelper)
+                    
                     tmrHelper.sort((a,b) => {
                         return b.Time - a.Time
                     })
-                    console.log("tmr",tmrHelper)
+                    
                     tmrCoins.sort((a,b) => {
                         return a.Time - b.Time
                     })
@@ -266,10 +263,10 @@ function Coin2(data){
                     if(tmrHelper.length > 1){
                        setTomorrowHelper(tmrHelper)
                     }
-                    console.log(tomorrowHelper)
+                    
                     tmrCoins.splice(0,tomorrowHelper.length,...tomorrowHelper)
                    // ----------
-                    //setCoins(filteredCoins)
+                  
                     if(filteredCoins.length<20){
                         let index = 20 - filteredCoins.length
                         tmrCoins = tmrCoins.slice(0,index)
@@ -279,7 +276,7 @@ function Coin2(data){
                         setCoins(filteredCoins)
                     }
     
-                console.log(counter)
+                
                 if(counter >2){
                     timing = 60000
                 }
@@ -292,7 +289,7 @@ function Coin2(data){
         }
 
     },[counter])
-    console.log(coins,tomorrowCoins)
+   
     if(coins.length>=20){
         return( <div className="coins-wrapper">
         <p className="token-p">Upcoming events</p>
@@ -311,9 +308,12 @@ function Coin2(data){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className={coin.Type.includes("PP") ? "chart-grid-PP" : "chart-grid"}><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                     coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
+                                     coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
+                                     coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
-            {/* chart-grid */}
             </div> 
             )}
     </div>
@@ -336,7 +336,11 @@ function Coin2(data){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className="chart-grid"><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                     coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
+                                     coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
+                                     coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
             </div>
             )}
@@ -355,7 +359,11 @@ function Coin2(data){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className="chart-grid"><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                     coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
+                                     coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
+                                     coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
             </div>
             )}
