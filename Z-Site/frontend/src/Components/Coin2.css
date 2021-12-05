@@ -90,25 +90,20 @@
     color:#FFFFFF;
     text-decoration: none;
 }
-.chart-grid-poo {
+.chart-grid {
     padding-left:18px;
     margin-left:16px;
     align-self: flex-start;
 }
 
 
-.chart-grid-poo a{
+.chart-grid a{
     font-family: 'Inter',sans-serif;
     color:#A1A1AA;
     text-decoration: none;
 
 }
-.chart-grid-dex {
-    padding-left:18px;
-    margin-left:16px;
-    align-self: flex-start;
 
-}
 .chart-grid-pp {
     color: green;
 }
@@ -204,9 +199,6 @@
     font-family: 'Inter',sans-serif;
     text-decoration: none;
     color:pink;
-}
-.pink-grid-hidden {
-    display: none;
 }
 .pink-grid-TBA {
     display:none;
