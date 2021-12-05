@@ -89,6 +89,8 @@ function Coin2(data){
                 let tmrCoins = [];
                 let tmrHelper = [];
 
+                console.log(coinS)
+
                     for(let i =0;i<coinsLenght;i++){
                         if(coinS[i].Date !=null){
                             if(typeof coinS[i].Date == 'string'){
@@ -125,6 +127,7 @@ function Coin2(data){
                     
                    //всички токени който са с днешна дата и са в следващите часове------------
 
+                    //TODAY COINS=--------------------------------------------------------------
                    for(let i =0;i<coinsLenght;i++){
                         if(coinS[i].Date == today){
                             if(coinS[i].Time2 > currentTime){
@@ -168,8 +171,13 @@ function Coin2(data){
                                 
                             }
                             
-                            if(coinS[i].Time2 > currentTime){
-                                
+                            if(coinS[i].Time > currentTime){
+                                if(coinS[i].Poo != null){
+                                    coinS[i].Poo2 = coinS[i].Poo.slice(0,32)
+                                }
+                                if(coinS[i].Pink != null){
+                                    coinS[i].Pink2 = coinS[i].Pink.slice(0,30)
+                                }
                                 filteredCoins.push(coinS[i])
                             }
                         }
@@ -277,7 +285,7 @@ function Coin2(data){
                     }
     
                 
-                if(counter >2){
+                if(counter >5){
                     timing = 60000
                 }
 
@@ -289,7 +297,7 @@ function Coin2(data){
         }
 
     },[counter])
-   
+   console.log(coins,tomorrowCoins)
     if(coins.length>=20){
         return( <div className="coins-wrapper">
         <p className="token-p">Upcoming events</p>
@@ -308,17 +316,38 @@ function Coin2(data){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
-                                     coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
-                                     coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
-                                     coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
             </div> 
             )}
     </div>
     )
-    }else if(coins.length <20){
+    }else if(coins.length == 0){
+        return( <div className="coins-wrapper">
+            <p className="date-p">TOMORROW {tomorrowDisplay}</p>
+        {tomorrowCoins.map(coin =>  
+        <div className="coin-div">
+            <Grid  container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center">
+            <Grid item xs className="time-grid"><p className="coin-time"><span className={coin.Type.includes("WL") ? "dotWL" : 
+                                                                                          coin.Type.includes("PP") ? "dotPP" :
+                                                                                          coin.Type.includes("PV") ? "dotPV" :
+                                                                                          coin.Type.includes("LA") ? "dotLA" :
+                                                                                          coin.Type.includes("FL") ? "dotFL" :
+                                                                                          coin.Type.includes("VC") ? "dotVC": 
+                                                                                          coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
+            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+            </Grid>
+            </div>
+            )}
+            </div>)
+    }
+    else if(coins.length <20){
         return( <div className="coins-wrapper">
         <p className="token-p">Upcoming events</p>
         <p className="date-p">TODAY {todayDisplay}</p>
@@ -336,11 +365,8 @@ function Coin2(data){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
-                                     coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
-                                     coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
-                                     coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
             </div>
             )}
@@ -359,11 +385,8 @@ function Coin2(data){
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
             <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
-                                     coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
-                                     coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
-                                     coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+            <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+            <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
             </div>
             )}
