@@ -6,10 +6,10 @@ let counter =0;
 //Работи само с мп4 , за снимки ще трябва да измисля нещо друго и switch :
 //тук слагам лоадинг мп4----------------------
 
-let arr = ["https://imgur.com/xnT2suj.mp4"];
+let arr = ["https://i.imgur.com/LQzDhD0.mp4"];
 let arrTG = [];
 const Promo = ({props}) => {
-    const [url,setUrl] = useState('https://imgur.com/xnT2suj.mp4')
+    const [url,setUrl] = useState('https://i.imgur.com/LQzDhD0.mp4')
     //всички монети са в coinS-----------------
     let coinS = props
    
