@@ -1,3 +1,9 @@
 .container-app{
-    height: auto;
+    height: 100vh;
+    scroll-behavior: smooth;
+    min-width: 75rem;
+   overflow: hidden;
+  
 }
+
+

@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from "react";
 import { Grid } from '@mui/material';
+import Box from '@mui/material/Box';
 import './Coin2.css'
 
 let timing = 100;
@@ -278,7 +279,7 @@ function Coin2(data){
     
                 
                 if(counter >2){
-                    timing = 60000
+                    timing = 5
                 }
 
                 setCounter(counter + 1)
@@ -307,19 +308,22 @@ function Coin2(data){
                                                                                           coin.Type.includes("FL") ? "dotFL" :
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
-            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
+            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name}  <span className="type-span">{coin.Type}</span></a></Grid>
             <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
                                      coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
                                      coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
             <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
                                      coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
+            <div className="box-bottom"></div>
             </div> 
             )}
+        
     </div>
     )
     }else if(coins.length <20){
         return( <div className="coins-wrapper">
+        
         <p className="token-p">Upcoming events</p>
         <p className="date-p">TODAY {todayDisplay}</p>
         {coins.map(coin =>  
@@ -335,16 +339,17 @@ function Coin2(data){
                                                                                           coin.Type.includes("FL") ? "dotFL" :
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
-            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
+            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name}  <span className="type-span">{coin.Type}</span></a></Grid>
             <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
                                      coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
                                      coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
             <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
                                      coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
+            
             </div>
             )}
-        <p className="date-p">TOMORROW {tomorrowDisplay}</p>
+        <p className="date-p-tomorrow">TOMORROW {tomorrowDisplay}</p>
         {tomorrowCoins.map(coin =>  
         <div className="coin-div">
             <Grid  container
@@ -358,15 +363,17 @@ function Coin2(data){
                                                                                           coin.Type.includes("FL") ? "dotFL" :
                                                                                           coin.Type.includes("VC") ? "dotVC": 
                                                                                           coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
-            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
+            <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name}  <span className="type-span">{coin.Type}</span></a></Grid>
             <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
                                      coin.Poo.includes("poocoin.app") ? "chart-grid-poo" : 
                                      coin.Poo.includes("dextools") ? "char-grid-dex" :"chart-grid-hidden" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
             <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" :
                                      coin.Pink.includes("pinksale.finance") ? "pink-grid" : 'pink-grid-hidden'}><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
             </Grid>
+            
             </div>
             )}
+            
     </div>
     )
     }

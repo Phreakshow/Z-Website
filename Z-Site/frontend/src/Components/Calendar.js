@@ -91,7 +91,7 @@ console.log(events)
 
 
   return (
-    <div style={{ width: "100%", height: "100%" , margin:"10vh 0 0 0" }}>
+    <div style={{ width: "100%", height: "100%" , margin:"5rem 0 0 0" }}>
     <StyleWrapper>
     <ModalPopup modalProps={modalProps} modalIsOpen={modalIsOpen} setModalIsOpenToTrue={setModalIsOpenToTrue} setModalIsOpenToFalse={setModalIsOpenToFalse}/>
       <FullCalendar
@@ -137,6 +137,44 @@ console.log(events)
 
 //-----------------------Styling
 export const StyleWrapper = styled.div`
+.fc .fc-media-screen .fc-direction-ltr .fc-theme-standard{
+  height:90vh;
+  
+}
+
+.fc .fc-toolbar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0.75rem;
+    min-width: 600px !important;
+    
+}
+
+.fc .fc-view-harness {
+    flex-grow: 1;
+    position: relative;
+    min-width: 600px !important;
+    overflow: scroll;
+    
+}
+
+ .fc-day-today {
+    background: #DFDFDF !important;
+}
+
+
+
+
   .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
     margin-left: 9.75px
 ;

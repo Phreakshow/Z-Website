@@ -8,8 +8,12 @@ function Sidebar({props}) {
     
     return (
         <div className="sidebar-wrapper">
+    
             <Promo props={data}/>
             <Coin2 data={data}/>
+            
+      
+        
         </div>
     )
 }

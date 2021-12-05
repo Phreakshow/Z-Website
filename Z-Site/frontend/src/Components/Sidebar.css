@@ -1,13 +1,34 @@
 .sidebar-wrapper {
-    position: fixed;
-    
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    top:5rem;
     width: 24.8vw;
-    height: inherit;
+    min-width: 300px;
+    height: 100vh;
+    
     background-color: #18181B;
-    overflow-y: auto;
+   
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  
 }
 .sidebar-wrapper::-webkit-scrollbar {
     display: none;
   }
+
+  .box-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 23.8vw;
+    min-width: 300px;
+height: 4rem;
+background: linear-gradient(180deg, rgba(24, 24, 27, 0) 1.6%, #18181B 90.53%);
+mix-blend-mode: normal;
+    color: #fff;
+    pointer-events:none;
+  }
+
+  

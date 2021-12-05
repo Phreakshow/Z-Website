@@ -9,6 +9,7 @@ import {
 import { Button } from '@mui/material';
 import logo from "../Z-Logo.png"
 import './Navbar.css'
+
 const useStyles = makeStyles((theme) => ({
     navlinks: {
       marginLeft: theme.spacing(10),
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
    logo: {
       flexGrow: "1",
-      background: "linear-gradient(270deg, #EC4899 0%, #FFC6CF 94.76%)",
+      background: "linear-gradient(270deg, #EC4899 00%, #FFC6CF 80%)",
       justifyContent:"space-between",
     },
     link: {

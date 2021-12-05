@@ -40,7 +40,7 @@ const Promo = ({props}) => {
         }
     }
     return(
-        <div className="promo-wrapper">
+        <div >
             <button onClick={()=> window.open(arrTG[counter-1] , "_blank")} className="player-button">
             <ResponsivePlayer
              url={url}
@@ -48,6 +48,7 @@ const Promo = ({props}) => {
              
              />
              </button>
+             
         </div>
     )
 }

@@ -4,6 +4,8 @@ import { Box } from '@mui/system';
 import Calendar from './Calendar'
 import Sidebar from './Sidebar'
 import axios from 'axios'
+import './Sidebar.css'
+
 function Content() {
     const [data,setData] = useState([])
     
@@ -24,11 +26,12 @@ function Content() {
 
     return (
         <div>
-        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <Box sx={{ display: 'flex', width: "25%" ,height:"100%",  flexWrap: 'nowrap', backgroundColor: "#202124" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row',  }}>
+        <Box sx={{ display: 'flex', width: "25%" ,height:"100%",  flexWrap: 'nowrap', overflow:"auto", backgroundColor: "#202124"}}>
             <Sidebar props={data}/>
+            <div className="box-bottom"></div>
         </Box>
-        <Box sx={{ display: 'flex',  width: "75%", flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex',  width: "75%", flexWrap: 'nowrap', minWidth: "250px" ,overflow: "auto"}}>
         <Calendar />
         </Box>
         </Box>
