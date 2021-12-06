@@ -22,8 +22,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 23.8vw;
-    min-width: 300px;
+    width: calc(25% - 17px);
+    min-width: 280px;
 height: 4rem;
 background: linear-gradient(180deg, rgba(24, 24, 27, 0) 1.6%, #18181B 90.53%);
 mix-blend-mode: normal;

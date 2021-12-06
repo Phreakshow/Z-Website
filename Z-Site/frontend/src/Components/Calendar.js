@@ -457,6 +457,10 @@ margin: 0px 0px;
     background: rgba(255, 255, 255, 0.01);
     border-color: rgba(255, 255, 255, 0.01)
 }
+
+
+
+
 .css-1ta79b3 .fc-direction-ltr .fc-toolbar>*>:not(:first-child) {
     margin-left: 9.75px;
 }

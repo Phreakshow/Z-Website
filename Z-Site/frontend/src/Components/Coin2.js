@@ -389,8 +389,10 @@ else if(coins.length <20){
         <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
         <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
         </Grid>
+        
         </div>
         )}
+        <div className="margin-box"></div>
 </div>
 )
 }

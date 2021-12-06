@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         <CssBaseline />
         <Toolbar className={classes.logo}>
           <Typography variant="h4" >
-          <img src={logo} cursor="help" height={60} />
+          <img src={logo} cursor="help" height={80} />
           </Typography>
           <Button variant="contained">Connect</Button>
         </Toolbar>
