@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   }));
-  
+  //<Button variant="contained">Connect</Button>
   function Navbar() {
     const classes = useStyles();
   
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
           <Typography variant="h4" >
           <img src={logo} cursor="help" height={80} />
           </Typography>
-          <Button variant="contained">Connect</Button>
+         
         </Toolbar>
       </AppBar>
     );
