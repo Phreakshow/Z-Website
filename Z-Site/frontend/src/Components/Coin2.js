@@ -104,7 +104,12 @@ function Coin2(data){
                             }
                         }
                         coinS[i].Time2 = coinS[i].Time + utcDiff 
-
+                        if(coinS[i].Poo != null){
+                            coinS[i].Poo2 = coinS[i].Poo.slice(0,32)
+                        }
+                        if(coinS[i].Pink != null){
+                            coinS[i].Pink2 = coinS[i].Pink.slice(0,30)
+                        }
 
                         
                         if(coinS[i].Time2 >= 24){
@@ -131,9 +136,30 @@ function Coin2(data){
                     //TODAY COINS=--------------------------------------------------------------
                    for(let i =0;i<coinsLenght;i++){
                         if(coinS[i].Date == today){
+                            
+                            if(coinS[i].flagged == true){
+                                if(coinS[i].Time < utcDiff){
+                                    if(coinS[i].Time < 0){
+                                        coinS[i].Time = -coinS[i].Time    
+                                    }else {
+                                    
+                                        let hp = coinS[i].Time
+                                        coinS[i].Time2 = hp
+                                    }
+                                    }
+                                if(coinS[i].DateFormated.length > 10){
+                                    console.log("bigger")
+                                    let helpr = coinS[i].Time
+                                    helpr = "0" + helpr.toFixed(2)
+                                    helpr = helpr.replace('.',':')
+                                    helpr = helpr + ' ' + "AM"
+                                    coinS[i].DateFormated = helpr
+                                    
+                                }
+                            }
                             if(coinS[i].Time2 > currentTime){
                                 //PM -----------------------------------
-                                
+                                if(coinS[i].DateFormated.length > 10){
                                 if(coinS[i].Time2 >12){
                                     let helpr = coinS[i].Time2 - 12.0
                                     if(helpr < 10){
@@ -171,16 +197,12 @@ function Coin2(data){
                                 //--------------------------------------
                                 
                             }
+                        }
                             
-                            if(coinS[i].Time > currentTime){
-                                if(coinS[i].Poo != null){
-                                    coinS[i].Poo2 = coinS[i].Poo.slice(0,32)
-                                }
-                                if(coinS[i].Pink != null){
-                                    coinS[i].Pink2 = coinS[i].Pink.slice(0,30)
-                                }
+                            if(coinS[i].Time2 > currentTime){
                                 filteredCoins.push(coinS[i])
                             }
+                           
                         }
                         
                         /// TOMORROW -------------------------------------------------------
@@ -257,8 +279,9 @@ function Coin2(data){
                     }
                     
                     //сортираме в възходящ ред ------------------------------------------------
+                    console.log(filteredCoins)
                     filteredCoins.sort((a,b) => {
-                        return a.Time - b.Time
+                        return a.Time2 - b.Time2
                     })
                     
                     tmrHelper.sort((a,b) => {
@@ -317,8 +340,12 @@ function Coin2(data){
                                                                                       coin.Type.includes("VC") ? "dotVC": 
                                                                                       coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
         <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-        <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                 coin.Poo.length < 5 ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+
+<Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : 
+                                 coin.Pink.length < 5 ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+
         </Grid>
         </div> 
         )}
@@ -341,8 +368,11 @@ function Coin2(data){
                                                                                       coin.Type.includes("VC") ? "dotVC": 
                                                                                       coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
         <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-        <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                 coin.Poo.length < 5 ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+                <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : 
+                                 coin.Pink.length < 5 ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+
         </Grid>
         </div>
         )}
@@ -366,8 +396,12 @@ else if(coins.length <20){
                                                                                       coin.Type.includes("VC") ? "dotVC": 
                                                                                       coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
         <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-        <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                 coin.Poo.length < 5 ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+
+        <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : 
+                                 coin.Pink.length < 5 ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+
         </Grid>
         </div>
         )}
@@ -386,8 +420,11 @@ else if(coins.length <20){
                                                                                       coin.Type.includes("VC") ? "dotVC": 
                                                                                       coin.Type.includes("NF") ? "dotNF" : "dot2"}></span>{coin.DateFormated}</p></Grid>
         <Grid item xs className="name-grid"><a href={coin.TG} target="_blank"> {coin.name} <span className="type-span">{coin.Type}</span></a></Grid>
-        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
-        <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
+        <Grid item xs className={coin.Poo == null ? "chart-grid-TBA" : 
+                                 coin.Poo.length < 5 ? "chart-grid-TBA" : "chart-grid" }><a href={coin.Poo} target="_blank">{coin.Poo2}...</a></Grid>
+
+        <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : 
+                                 coin.Pink.length < 5 ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
         </Grid>
         
         </div>

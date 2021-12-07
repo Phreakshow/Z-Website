@@ -6,19 +6,20 @@ let counter =0;
 //Работи само с мп4 , за снимки ще трябва да измисля нещо друго и switch :
 //тук слагам лоадинг мп4----------------------
 
-let arr = ["https://i.imgur.com/LQzDhD0.mp4"];
+let arr = ["https://i.imgur.com/LQzDhD0.mp4","https://imgur.com/gszp1OL.mp4"];
 let arrTG = [];
 const Promo = ({props}) => {
-    const [url,setUrl] = useState('https://i.imgur.com/LQzDhD0.mp4')
+    const [url,setUrl] = useState("https://i.imgur.com/LQzDhD0.mp4","https://imgur.com/gszp1OL.mp4")
     //всички монети са в coinS-----------------
     let coinS = props
    
     //филтрираме само монетите който са промотед и имат медиен файл , и ги слагаме в арей------------
-    if(arr.length <2){
+    if(arr.length <3){
         for(let i = 0;i<coinS.length;i++){
             if(coinS[i].PromoLink != undefined){
                 arr.unshift(coinS[i].PromoLink)
                 arrTG.unshift(coinS[i].TG)
+                console.log("inside arr",arr)
             }
         }    
     }
