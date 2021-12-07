@@ -11,11 +11,11 @@
     
     background-color: #18181B;
    
-    -ms-overflow-style: none;  /* IE and Edge */
+    -ms-overflow-style: hidden;  /* IE and Edge */
     scrollbar-width: none;  
 }
 .sidebar-wrapper::-webkit-scrollbar {
-    display: none;
+    display: hidden;
   }
 
   .box-bottom {

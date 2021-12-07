@@ -7,8 +7,8 @@
     flex-direction: column;
     height: auto;
     margin-bottom: 1vh;
-    
     padding:0;
+    border:1px solid red;
     
 }
 .token-p {
