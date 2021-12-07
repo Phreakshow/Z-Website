@@ -376,6 +376,7 @@ function Coin2(data){
         </Grid>
         </div>
         )}
+        <div className="margin-box"></div>
         </div>)
 }
 else if(coins.length <20){
@@ -426,7 +427,7 @@ else if(coins.length <20){
         <Grid item xs className={coin.Pink == null ? "pink-grid-TBA" : 
                                  coin.Pink.length < 5 ? "pink-grid-TBA" : "pink-grid" }><a href={coin.Pink} target="_blank">{coin.Pink2}...</a></Grid>
         </Grid>
-        
+       
         </div>
         )}
         <div className="margin-box"></div>
