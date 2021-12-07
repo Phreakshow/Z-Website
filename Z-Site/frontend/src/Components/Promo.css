@@ -1,9 +1,9 @@
 .player-button {
     position: relative;
     background-color: black;
-    border:1px solid green;
     min-height: 30vh;
     max-height: 30vh;
+    border:0;
 }
 .player-button :hover{
     cursor: pointer;
